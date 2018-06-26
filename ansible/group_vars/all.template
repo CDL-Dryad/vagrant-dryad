@@ -1,0 +1,13 @@
+machine_name: daisie-dash
+user: ubuntu
+user_home: /home/ubuntu
+
+dryad:
+  db:
+    name: dryad_repo
+    user: dryad_app
+    password: ## DB_PASSWORD ##
+  aws:
+    accessKey: "{{ lookup('env', 'DRYAD_AWS_ACCESS_KEY_ID') }}"
+    secretKey: "{{ lookup('env', 'DRYAD_AWS_SECRET_ACCESS_KEY') }}"
+    regionName: ## REPLACE ##

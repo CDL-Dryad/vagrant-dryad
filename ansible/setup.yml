@@ -1,0 +1,81 @@
+---
+- name: Install MySQL and create database and user
+  hosts: all
+  tasks:
+    - include_role: 
+        name: geerlingguy.mysql
+      become: yes
+      vars:
+           mysql_root_password: "{{ dryad.db.password }}"
+           mysql_databases:
+             - name: "{{ dryad.db.name }}"
+               encoding: utf8mb4
+               collation: utf8mb4_unicode_ci
+           mysql_users:
+             - name: "{{ dryad.db.user }}"
+               host: "localhost"
+               password: "{{ dryad.db.password }}"
+               priv: "{{ dryad.db.name }}.*:ALL"
+
+- hosts: all
+  tasks:
+    - name: installing repo for Java 8 in Ubuntu
+      apt_repository: repo='ppa:openjdk-r/ppa'
+
+- name: Install Java 8
+  hosts: all
+  roles:
+    - role: geerlingguy.java
+      when: "ansible_os_family == 'Debian'"
+      java_packages:
+        - openjdk-8-jdk
+
+- name: Install Solr
+  hosts: all
+  become: yes
+  tasks:
+    - include_role:
+        name: geerlingguy.java
+    - include_role:
+        name: geerlingguy.solr
+      vars: 
+            solr_version: "5.5.3"
+            solr_remove_cruft: true
+            solr_user: "{{ user }}"
+            solr_create_user: false
+            solr_cores:
+             - geoblacklight
+
+- name: Install geoblacklight
+  hosts: all
+  tasks:
+    - file:
+        path: "{{ user_home }}/tmp"
+        state: directory
+        mode: 0777
+    - get_url:
+        url: https://github.com/geoblacklight/geoblacklight-schema/archive/v0.3.2.tar.gz
+        dest: "{{ user_home }}/tmp/v0.3.2.tar.gz"
+    - shell: "cd {{ user_home }}/tmp; tar zxvf v0.3.2.tar.gz; cp geoblacklight-schema-0.3.2/conf/* /var/solr/data/geoblacklight/conf"
+    - service:
+        name: solr
+        state: restarted
+      become: yes
+
+- name: Configure servers with ruby support system wide
+  hosts: all
+  roles:
+    - { role: rvm_io.ruby,
+        tags: ruby,
+        become: yes,
+
+        rvm1_rubies: ['ruby-2.4.1'],
+        rvm1_install_flags: '--auto-dotfiles',     # Remove --user-install from defaults
+        rvm1_install_path: /usr/local/rvm,         # Set to system location
+        rvm1_user: root                            # Need root account to access system location
+      }
+
+- name: Set up repos
+  hosts: all
+  roles:
+    - common

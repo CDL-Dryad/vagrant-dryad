@@ -1,0 +1,5 @@
+# from galaxy
+- src: rvm_io.ruby
+- src: geerlingguy.mysql
+- src: geerlingguy.java
+- src: geerlingguy.solr
