@@ -1,11 +1,11 @@
 vagrant-dash
 =============
 
-Vagrant and Ansible config for building a Dash VM
+Vagrant and Ansible config for building a Dash/Dryad VM
 
 Uses Ubuntu 12.04 64-bit, Ansible, MySQL, Java8, Ruby
 
-See also [Dash2 installation](https://github.com/CDLUC3/dashv2/blob/development/documentation/dash2_install.md) for the details of the process that is automated by this codebase.
+See also [Dryad installation](https://github.com/CDL-Dryad/dryad/blob/master/documentation/dryad_install.md) for the details of the process that is automated by this codebase.
 
 ## Requirements
 
