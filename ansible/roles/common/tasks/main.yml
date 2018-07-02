@@ -20,3 +20,7 @@
 - name: Symlink config files
   shell: cd dashv2; mkdir -p config/tenants; ./symlink_config.sh
   become: no
+  
+- name: Install bash profile for path and database variables
+  template: src=bash_profile.j2 dest="{{ user_home }}/.bash_profile" mode=0644
+  become: no
