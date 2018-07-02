@@ -1,0 +1,5 @@
+ansible/group_vars/all
+ansible/roles/geerlingguy.*
+ansible/roles/zzet.*
+ansible/setup.retry
+.vagrant

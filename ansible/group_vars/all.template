@@ -1,0 +1,17 @@
+machine_name: ## YOUR MACHINE NAME FOR EC2 ##
+user: ubuntu
+user_home: /home/ubuntu
+
+dryad:
+  db:
+    name: dash
+    user: dashuser
+    password: ## DB_PASSWORD ##
+  aws:
+    accessKey: "{{ lookup('env', 'DRYAD_AWS_ACCESS_KEY_ID') }}"
+    secretKey: "{{ lookup('env', 'DRYAD_AWS_SECRET_ACCESS_KEY') }}"
+    regionName: ## REPLACE ##
+  doi:
+    server: https://ezid.datacite.org
+    username: DRYAD.DRYAD
+    password: 
