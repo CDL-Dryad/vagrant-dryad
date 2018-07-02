@@ -17,3 +17,13 @@ fi
 # update instance
 sudo apt-get upgrade
 
+# On first login, finish installing rails
+if [ -f ~/rails_install.sh ]; then
+	bash ~/rails_install.sh
+	rm ~/rails_install.sh
+	# install sample data
+	mysql -u {{ dryad.db.user }} -p{{ dryad.db.password }} -D {{ dryad.db.name }} -e "source $HOME/dash2-config/sample_data/sample_record.sql;"
+fi
+
+# Rails server alias
+alias rails_start='cd ~/dashv2; rails server --binding=0.0.0.0'

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Installing rails gem..."
+gem install rails
+cd dashv2/
+echo "Installing dashv2..."
+bundle install
+echo "Migrating DB..."
+bundle exec rake db:migrate

@@ -77,6 +77,8 @@ After the machine has been created/provisioned successfully, you can log in with
     
 Within the virtual machine, the __ubuntu__ user owns the code and installed directory.
 
+On first login, a script will finish installing and initializing Rails and the dashv2 system. To run the rails server, use the alias `rails_start`.
+
 To shut down the virtual machine, use
 
     vagrant halt
