@@ -1,0 +1,22 @@
+---
+- name: Clone bare dashv2 repo
+  git: repo=https://github.com/CDLUC3/dashv2
+       dest="{{ user_home }}/dashv2"
+       accept_hostkey=yes
+  become: no
+
+- name: Clone stash repo
+  git: repo=https://github.com/CDLUC3/stash
+       dest="{{ user_home }}/stash"
+       accept_hostkey=yes
+  become: no
+
+- name: Clone dash2-config repo
+  git: repo=https://github.com/CDLUC3/dash2-config-example.git
+       dest="{{ user_home }}/dash2-config"
+       accept_hostkey=yes
+  become: no
+
+- name: Symlink config files
+  shell: cd dashv2; mkdir -p config/tenants; ./symlink_config.sh
+  become: no

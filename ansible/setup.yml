@@ -84,3 +84,10 @@
             - libjemalloc-dev
         rbenv_users:
           - ubuntu
+
+
+- name: Set up repos
+  hosts: all
+  gather_facts: yes
+  roles:
+    - common
