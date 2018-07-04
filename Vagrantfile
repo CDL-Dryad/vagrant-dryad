@@ -19,8 +19,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Make sure user has customized the template file.
   # Use ruby exception handling to catch errors
 
-  # Set the name
-  config.vm.define "vagrant-dash"
   config.vm.box = "dryad"
 
   # Provider-specific configuration so you can fine-tune various
@@ -49,9 +47,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # View the documentation for the provider you're using for more
   # information on available options.
   config.vm.provision "ansible" do |ansible|
-    ansible.groups = {
-      "dryad_servers" => ["vagrant-dash"]
-    }
     ansible.limit = 'all'
     ansible.playbook = "./ansible/setup.yml"
     ansible.sudo = true
