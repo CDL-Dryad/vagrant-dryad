@@ -1,24 +1,24 @@
 ---
-- name: Clone bare dashv2 repo
-  git: repo=https://github.com/CDLUC3/dashv2
-       dest="{{ user_home }}/dashv2"
+- name: Clone bare dryad repo
+  git: repo=https://github.com/CDL-Dryad/dryad
+       dest="{{ user_home }}/dryad"
        accept_hostkey=yes
   become: no
 
 - name: Clone stash repo
-  git: repo=https://github.com/CDLUC3/stash
+  git: repo=https://github.com/CDL-Dryad/stash
        dest="{{ user_home }}/stash"
        accept_hostkey=yes
   become: no
 
-- name: Clone dash2-config repo
-  git: repo=https://github.com/CDLUC3/dash2-config-example.git
-       dest="{{ user_home }}/dash2-config"
+- name: Clone dryad-config repo
+  git: repo=https://github.com/CDL-Dryad/dryad-config-example.git
+       dest="{{ user_home }}/dryad-config"
        accept_hostkey=yes
   become: no
 
 - name: Symlink config files
-  shell: cd dashv2; mkdir -p config/tenants; ./symlink_config.sh
+  shell: cd dryad; mkdir -p config/tenants; ./symlink_config.sh
   become: no
   
 - name: Install bash profile for path and database variables

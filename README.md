@@ -1,15 +1,15 @@
-vagrant-dash
+vagrant-dryad
 =============
 
-Vagrant and Ansible config for building a Dash VM
+Vagrant and Ansible config for building a Dryad VM
 
-Uses Ubuntu 12.04 64-bit, Ansible, MySQL, Java8, Ruby
+Uses Ubuntu 16.04 64-bit, Ansible, MySQL, Java8, Ruby
 
-See also [Dash2 installation](https://github.com/CDLUC3/dashv2/blob/development/documentation/dash2_install.md) for the details of the process that is automated by this codebase.
+See also [Dryad installation](https://github.com/CDL-Dryad/dryad/blob/master/documentation/dryad_install.md) for the details of the process that is automated by this codebase.
 
 ## Requirements
 
-These applications must be installed on your host machine.  They will be used to build and run a virtual machine for Dash.
+These applications must be installed on your host machine.  They will be used to build and run a virtual machine for Dryad.
 
 1. [Vagrant](http://vagrantup.com) (version 2.0 or higher)
 2. [Ansible](http://ansible.com) (version 2.0 or higher)
@@ -21,8 +21,8 @@ Vagrant and VirtualBox installation packages can be downloaded from their respec
 
 You will need to clone the repository that contains the Vagrant/Ansible settings:
 
-    git clone https://github.com/CDL-Dryad/vagrant-dash.git
-    cd vagrant-dash
+    git clone https://github.com/CDL-Dryad/vagrant-dryad.git
+    cd vagrant-dryad
     
 ## Preparing for an AWS deployment
 
@@ -49,7 +49,7 @@ Reload your settings when you're done: `source ~/.bash_profile`.
 
 Verify that you have the correct path specified: `more $DRYAD_AWS_PRIVATEKEY_PATH` should give you a cryptic key starting with `-----BEGIN RSA PRIVATE KEY-----`. If not, double-check your path in your .bash_profile and source it again.
 
-## Configuring Dash
+## Configuring Dryad
 
 Copy the `ansible/group_vars/all.template` to `ansible/group_vars/all` and set a database password.
 
@@ -77,7 +77,7 @@ After the machine has been created/provisioned successfully, you can log in with
     
 Within the virtual machine, the __ubuntu__ user owns the code and installed directory.
 
-On first login, a script will finish installing and initializing Rails and the dashv2 system. To run the rails server, use the alias `rails_start`.
+On first login, a script will finish installing and initializing Rails and the Dryad system. To run the rails server, use the alias `rails_start`.
 
 To shut down the virtual machine, use
 

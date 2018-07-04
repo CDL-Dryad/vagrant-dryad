@@ -19,9 +19,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Make sure user has customized the template file.
   # Use ruby exception handling to catch errors
 
-  config.vm.box = "dashv2"
   # Set the name
   config.vm.define "vagrant-dash"
+  config.vm.box = "dryad"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -37,7 +37,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # us-east-1	xenial	16.04 LTS	amd64	hvm-ssd	20180109	ami-41e0b93b
     aws.ami = "ami-41e0b93b"
     aws.instance_type = "t2.small"
-    aws.security_groups = ['default', 'dash-privileges']
+    aws.security_groups = ['default', 'dryad-privileges']
     aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 'Ebs.VolumeSize' => 50 }]
     override.ssh.username = "ubuntu"
     override.ssh.private_key_path = ENV["DRYAD_AWS_PRIVATEKEY_PATH"]
