@@ -3,6 +3,8 @@ user: ubuntu
 user_home: /home/ubuntu
 
 dryad:
+  github:
+    username: CDL-Dryad ## OR REPLACE WITH YOUR PERSONAL ACCOUNT ##
   db:
     name: dash
     user: dashuser
