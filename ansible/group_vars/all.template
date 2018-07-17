@@ -7,8 +7,8 @@ dryad:
     username: CDL-Dryad ## OR REPLACE WITH YOUR PERSONAL ACCOUNT ##
   db:
     name: dash
-    user: dashuser
-    password: ## DB_PASSWORD ##
+    user: travis
+    password: ""
   aws:
     accessKey: "{{ lookup('env', 'DRYAD_AWS_ACCESS_KEY_ID') }}"
     secretKey: "{{ lookup('env', 'DRYAD_AWS_SECRET_ACCESS_KEY') }}"
