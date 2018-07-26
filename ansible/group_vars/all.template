@@ -6,7 +6,7 @@ dryad:
   github:
     username: CDL-Dryad ## OR REPLACE WITH YOUR PERSONAL ACCOUNT ##
   db:
-    name: dash
+    name: dryad
     user: travis
     password: ""
   aws:
