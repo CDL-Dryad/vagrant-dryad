@@ -3,10 +3,12 @@ user: ubuntu
 user_home: /home/ubuntu
 
 dryad:
+  github:
+    username: CDL-Dryad ## OR REPLACE WITH YOUR PERSONAL ACCOUNT ##
   db:
-    name: dash
-    user: dashuser
-    password: ## DB_PASSWORD ##
+    name: dryad
+    user: travis
+    password: ""
   aws:
     accessKey: "{{ lookup('env', 'DRYAD_AWS_ACCESS_KEY_ID') }}"
     secretKey: "{{ lookup('env', 'DRYAD_AWS_SECRET_ACCESS_KEY') }}"

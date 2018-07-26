@@ -22,8 +22,11 @@ if [ -f ~/rails_install.sh ]; then
 	bash ~/rails_install.sh
 	rm ~/rails_install.sh
 	# install sample data
-	mysql -u {{ dryad.db.user }} -p{{ dryad.db.password }} -D {{ dryad.db.name }} -e "source $HOME/dash2-config/sample_data/sample_record.sql;"
+	mysql -u {{ dryad.db.user }} -p{{ dryad.db.password }} -D {{ dryad.db.name }} -e "source $HOME/dryad-config/sample_data/sample_record.sql;"
 fi
 
 # Rails server alias
-alias rails_start='cd ~/dashv2; rails server --binding=0.0.0.0'
+alias rails_start='cd ~/dryad; rails server --binding=0.0.0.0'
+
+# Route Rails port 3000 to 80
+sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000

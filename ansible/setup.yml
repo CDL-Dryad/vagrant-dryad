@@ -63,6 +63,9 @@
     - service:
         name: solr
         state: restarted
+    - file:
+        path: "{{ user_home }}/tmp"
+        state: absent
       become: yes
 
 - name: Install rbenv
