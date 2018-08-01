@@ -91,6 +91,11 @@
         rbenv_users:
           - ubuntu
 
+- name: Install sendmail
+  hosts: all
+  tasks:
+    - include_role:
+        name: hashbangcode.sendmail
 
 - name: Set up repos
   hosts: all

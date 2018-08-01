@@ -3,3 +3,4 @@
 - src: geerlingguy.java
 - src: geerlingguy.solr
 - src: zzet.rbenv
+- src: hashbangcode.sendmail
