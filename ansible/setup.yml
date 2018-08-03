@@ -96,6 +96,16 @@
   tasks:
     - include_role:
         name: hashbangcode.sendmail
+        
+- name: Install node.js
+  hosts: all
+  tasks:
+    - include_role:
+        name: geerlingguy.nodejs
+      vars:
+        nodejs_npm_global_packages:
+            - name: bower
+            - name: gulp-cli
 
 - name: Set up repos
   hosts: all
