@@ -1,4 +1,4 @@
-export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/.rbenv/ruby-build/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.rbenv/bin:$HOME/.rbenv/shims:$HOME/.rbenv/ruby-build/bin:$PATH"
 
 # AWS settings:
 export AWS_ACCESS_KEY_ID={{ dryad.aws.accessKey }}
@@ -24,9 +24,6 @@ if [ -f ~/rails_install.sh ]; then
 	# install sample data
 	mysql -u {{ dryad.db.user }} -p{{ dryad.db.password }} -D {{ dryad.db.name }} -e "source $HOME/dryad-config/sample_data/sample_record.sql;"
 fi
-
-# Rails server alias
-alias rails_start='cd ~/dryad; rails server --binding=0.0.0.0'
 
 # Route Rails port 3000 to 80
 sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000

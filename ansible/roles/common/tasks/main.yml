@@ -25,6 +25,10 @@
   template: src=bash_profile.j2 dest="{{ user_home }}/.bash_profile" mode=0644
   become: no
 
+- name: Copy rails_start script into bin directory
+  template: src=rails_start.sh.j2 dest="{{ user_home }}/bin/rails_start.sh"
+  become: no
+
 - name: Finish ruby and rails install on first login
   template: src=rails_install.sh.j2 dest="{{ user_home }}/rails_install.sh" mode=0755
   become: no
