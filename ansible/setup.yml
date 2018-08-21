@@ -11,10 +11,13 @@
              - name: "{{ dryad.db.name }}"
                encoding: utf8mb4
                collation: utf8mb4_unicode_ci
+             - name: stash_engine_test
+               encoding: utf8mb4
+               collation: utf8mb4_unicode_ci
            mysql_users:
              - name: "{{ dryad.db.user }}"
                password: "{{ dryad.db.password }}"
-               priv: "{{ dryad.db.name }}.*:ALL"
+               priv: "*.*:ALL"
            mysql_packages:
              - mysql-server
              - mysql-client
@@ -88,6 +91,21 @@
         rbenv_users:
           - ubuntu
 
+- name: Install sendmail
+  hosts: all
+  tasks:
+    - include_role:
+        name: hashbangcode.sendmail
+        
+- name: Install node.js
+  hosts: all
+  tasks:
+    - include_role:
+        name: geerlingguy.nodejs
+      vars:
+        nodejs_npm_global_packages:
+            - name: bower
+            - name: gulp-cli
 
 - name: Set up repos
   hosts: all

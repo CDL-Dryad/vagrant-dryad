@@ -2,4 +2,6 @@
 - src: geerlingguy.mysql
 - src: geerlingguy.java
 - src: geerlingguy.solr
+- src: geerlingguy.nodejs
 - src: zzet.rbenv
+- src: hashbangcode.sendmail
