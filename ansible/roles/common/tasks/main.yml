@@ -30,7 +30,7 @@
   become: no
 
 - name: Copy rails_start script into bin directory
-  template: src=rails_start.sh.j2 dest="{{ user_home }}/bin/rails_start.sh"
+  template: src=rails_start.sh.j2 dest="{{ user_home }}/bin/rails_start.sh" mode=0755
   become: no
 
 - name: Finish ruby and rails install on first login
