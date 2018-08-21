@@ -1,0 +1,16 @@
+default: &default
+  adapter: mysql2
+  username: {{ db.user }}
+  database: {{ db.name }}
+  password: {{ db.password }}
+  port: 3306
+  encoding: utf8mb4
+  collation: utf8mb4_unicode_ci
+ 
+development:
+  <<: *default
+  host: 127.0.0.1 # change these lines or override lines from default if they are not right
+
+test:
+  <<: *default
+  database: dashv2_test

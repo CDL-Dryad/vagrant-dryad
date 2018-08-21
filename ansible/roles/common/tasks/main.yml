@@ -20,7 +20,11 @@
 - name: Symlink config files
   shell: cd dryad; mkdir -p config/tenants; ./symlink_config.sh
   become: no
-  
+
+- name: Copy vagrant database config into place
+  template: src=database.yml.j2 dest="{{ user_home }}/dryad-config/config/database.yml" mode=0644
+  become: no
+
 - name: Install bash profile for path and database variables
   template: src=bash_profile.j2 dest="{{ user_home }}/.bash_profile" mode=0644
   become: no
