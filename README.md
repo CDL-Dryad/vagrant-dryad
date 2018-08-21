@@ -87,6 +87,13 @@ If you wish to destroy the virtual machine
 
     vagrant destroy
 
+## Final configuration
+
+Although you can start rails as soon as the VM is running, some final configuration is required before everything will work correctly:
+- Edit the files in the directory `dryad-config/config` to contain the appropriate credentials and settings.
+- If you are using the ORCID login, you will need to have ORCID add the DNS name of the VM to their list of approved redirects.
+- If you want to use http (the default config is not set up for https), the DNS name of the machine must be listed in the omniauth exclusions. Machines named <something>dash.datadryad.org are already allowed. See `stash_engine/config/initializers/omniauth.rb`.
+
 ## Customizing the Vagrant-built VM
 
 Beyond the above required changes, you can further customize the development environment. If you wish to customize further, it's a good idea to familiarize yourself with Vagrant's [command-line interface](http://docs.vagrantup.com/v2/cli/).
