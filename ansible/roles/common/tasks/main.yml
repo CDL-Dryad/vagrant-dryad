@@ -3,6 +3,7 @@
   apt: pkg={{ item }} state=installed update-cache=yes
   with_items:
     - python-pip
+    - python3-pip
     
 - name: Copy python requirements
   template: src=python_requirements.txt.j2 dest="{{ user_home }}/requirements.txt" mode="u+rwx" 
@@ -10,8 +11,9 @@
 
 - name: Install python packages
   pip: 
-    requirements: "{{ dryad.user_home }}/dryad-utils/requirements.txt"
-  become: no
+    requirements: "{{ user_home }}/requirements.txt"
+    executable: pip3
+  become: yes
     
 - name: Clone bare dryad repo
   git: 
