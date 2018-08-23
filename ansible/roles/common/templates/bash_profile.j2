@@ -17,6 +17,12 @@ fi
 # update instance
 sudo apt-get upgrade
 
+# Register this instance with OpsWorks on first login
+if [ -f ~/.aws/aws_opsworks.sh ]; then
+	bash ~/.aws/aws_opsworks.sh
+	rm ~/.aws/aws_opsworks.sh
+fi
+
 # On first login, finish installing rails
 if [ -f ~/rails_install.sh ]; then
 	bash ~/rails_install.sh
