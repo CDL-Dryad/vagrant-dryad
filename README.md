@@ -87,6 +87,10 @@ If you wish to destroy the virtual machine
 
     vagrant destroy
 
+## Running a web browser
+
+You'll want to install a client on your local machine that allows you to do x11 forwarding. Some suggestions are [here](https://uisapp2.iu.edu/confluence-prd/pages/viewpage.action?pageId=280461906), but if you're running Mac OS X, the easiest solution is [XQuartz](https://www.xquartz.org). Once you're installed XQuartz and have that running, run `ssh -X -i $DRYAD_AWS_PRIVATEKEY_PATH ubuntu@<your instance ip/hostname>` and then run `google-chrome`.
+
 ## Customizing the Vagrant-built VM
 
 Beyond the above required changes, you can further customize the development environment. If you wish to customize further, it's a good idea to familiarize yourself with Vagrant's [command-line interface](http://docs.vagrantup.com/v2/cli/).
