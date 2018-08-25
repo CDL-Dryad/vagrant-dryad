@@ -37,7 +37,7 @@
   become: no
 
 - name: Symlink config files
-  shell: cd dryad; mkdir -p config/tenants; ./symlink_config.sh
+  shell: cd dryad; ./symlink_config.sh
   become: no
   
 - name: Install bash profile for path and database variables
