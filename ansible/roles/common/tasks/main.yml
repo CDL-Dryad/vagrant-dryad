@@ -29,13 +29,6 @@
     accept_hostkey: yes
   become: no
 
-- name: Clone dryad-config repo
-  git: 
-    repo: https://github.com/{{ dryad.github.username }}/dryad-config-example.git
-    dest: "{{ user_home }}/dryad-config"
-    accept_hostkey: yes
-  become: no
-
 - name: Symlink config files
   shell: cd dryad; ./symlink_config.sh
   become: no
