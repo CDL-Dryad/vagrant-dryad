@@ -5,3 +5,4 @@
 - src: geerlingguy.nodejs
 - src: zzet.rbenv
 - src: hashbangcode.sendmail
+- src: cmprescott.chrome

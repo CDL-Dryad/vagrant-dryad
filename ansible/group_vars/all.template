@@ -17,3 +17,4 @@ dryad:
     server: https://ezid.datacite.org
     username: DRYAD.DRYAD
     password: 
+  instance_name: ## REPLACE ##

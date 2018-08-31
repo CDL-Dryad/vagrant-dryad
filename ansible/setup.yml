@@ -106,6 +106,12 @@
         nodejs_npm_global_packages:
             - name: bower
             - name: gulp-cli
+- name: Install Chrome
+  hosts: all
+  become: yes
+  tasks:
+    - include_role:
+        name: cmprescott.chrome
 
 - name: Set up repos
   hosts: all

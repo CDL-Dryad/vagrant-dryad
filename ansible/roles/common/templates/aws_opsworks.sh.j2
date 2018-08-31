@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "Registering instance with AWS OpsWorks..."
+aws opsworks register --region {{ dryad.aws.regionName }} --infrastructure-class ec2 --stack-id cbeb7a24-3ef8-4092-b140-42700d8cf2a6 --local --override-hostname {{ dryad.instance_name }}
+
+echo "Waiting for instance to register..."
+sleep 5
+INSTANCE_ID=$(sudo opsworks-agent-cli stack_state | sed -n 's/\"instance_id\"\://p' | sed -n 's/\s//pg' | sed -n 's/"//pg' | sed -n 's/,//pg')
+EC2_INSTANCE_ID=$(sudo opsworks-agent-cli stack_state | sed -n 's/\"ec2_instance_id\"\://p' | sed -n 's/\s//pg' | sed -n 's/"//pg' | sed -n 's/,//pg')
+
+while [ $INSTANCE_ID == "" ]; do
+	echo "still waiting for instance to register..."
+	sleep 5
+	INSTANCE_ID=$(sudo opsworks-agent-cli stack_state | sed -n 's/\"instance_id\"\://p' | sed -n 's/\s//pg' | sed -n 's/"//pg' | sed -n 's/,//pg')
+done
+
+echo "Assigning instance to Test Machines layer"
+aws opsworks update-instance --instance-id $INSTANCE_ID --layer-ids 90cbf3a9-012f-461d-bd2f-27f9cc695652
+
+EC2_INSTANCE_ID=$(sudo opsworks-agent-cli stack_state | sed -n 's/\"ec2_instance_id\"\://p' | sed -n 's/\s//pg' | sed -n 's/"//pg' | sed -n 's/,//pg')
+echo "Adding EC2 name to $EC2_INSTANCE_ID"
+aws ec2 create-tags --resources $EC2_INSTANCE_ID --tags Key=Name,Value={{ dryad.instance_name }}

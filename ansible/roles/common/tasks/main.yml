@@ -1,4 +1,20 @@
 ---
+- name: Install useful command-line tools
+  apt: pkg={{ item }} state=installed update-cache=yes
+  with_items:
+    - python-pip
+    - python3-pip
+    
+- name: Copy python requirements
+  template: src=python_requirements.txt.j2 dest="{{ user_home }}/requirements.txt" mode="u+rwx" 
+  become: no
+
+- name: Install python packages
+  pip: 
+    requirements: "{{ user_home }}/requirements.txt"
+    executable: pip3
+  become: yes
+    
 - name: Clone bare dryad repo
   git: 
     repo: https://github.com/{{ dryad.github.username }}/dryad
@@ -13,15 +29,8 @@
     accept_hostkey: yes
   become: no
 
-- name: Clone dryad-config repo
-  git: 
-    repo: https://github.com/{{ dryad.github.username }}/dryad-config-example.git
-    dest: "{{ user_home }}/dryad-config"
-    accept_hostkey: yes
-  become: no
-
 - name: Symlink config files
-  shell: cd dryad; mkdir -p config/tenants; ./symlink_config.sh
+  shell: cd dryad; ./symlink_config.sh
   become: no
   
 - name: Install bash profile for path and database variables
@@ -38,4 +47,19 @@
 
 - name: Finish ruby and rails install on first login
   template: src=rails_install.sh.j2 dest="{{ user_home }}/rails_install.sh" mode=0755
+  become: no
+
+- name: Create hidden dir for AWS
+  file: path={{ user_home }}/.aws state=directory owner={{ user }} mode=0755
+  
+- name: Install AWS config file
+  template: src=aws_config.j2 dest="{{ user_home }}/.aws/config" mode=0600 owner={{ user }}
+  remote_user: "{{ user }}"
+
+- name: Install AWS credentials file
+  template: src=aws_credentials.j2 dest="{{ user_home }}/.aws/credentials" mode=0600 owner={{ user }}
+  remote_user: "{{ user }}"
+
+- name: Register instance with Opsworks
+  template: src=aws_opsworks.sh.j2 dest="{{ user_home }}/.aws/aws_opsworks.sh" mode=0755
   become: no
