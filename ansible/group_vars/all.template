@@ -18,3 +18,13 @@ dryad:
     username: DRYAD.DRYAD
     password: 
   instance_name: ## REPLACE ##
+  tunnel:
+    # sshConnection would be something like bob@my.ssh.server.example.org and indicates
+    # the user and tunnel server that can get through the firewall
+    sshConnection: ## REPLACE ##
+
+    # tunnelFor would be a whitespace delimited list of domains for which traffic needs to be tunneled through
+    # an external server to make it through a firewall (using sshuttle).  For example
+    # my.sword.server.example.org my.db.server.example.org my.solr.server.example.org
+    # The domains names are whitespace delimited
+    tunnelFor: ## REPLACE ##
