@@ -4,3 +4,8 @@ ansible/roles/*
 !ansible/roles/requirements.yml
 ansible/setup.retry
 .vagrant
+
+# JetBrains noise
+.idea
+.raketasks
+*.iml
