@@ -91,6 +91,38 @@ If you wish to destroy the virtual machine
 
 You'll want to install a client on your local machine that allows you to do x11 forwarding. Some suggestions are [here](https://uisapp2.iu.edu/confluence-prd/pages/viewpage.action?pageId=280461906), but if you're running Mac OS X, the easiest solution is [XQuartz](https://www.xquartz.org). Once you're installed XQuartz and have that running, run `ssh -X -i $DRYAD_AWS_PRIVATEKEY_PATH ubuntu@<your instance ip/hostname>` and then run `google-chrome`.
 
+## Tunneling Traffic Through a Firewall
+
+Only certain IP addresses are allowed through the firewall in order to
+connect to backend services.  Because newly spun-up instances have different IP addresses
+at AWS, we don't have a consistent list.  However, there are a few servers with
+static IP addresses that are allowed through the firewall and the dynamic IP address servers can tunnel
+their traffic through one of them to obtain access.
+
+To tunnel traffic, add configuration lines like the following example to the ansible/group_vars/all (see the all.template file).
+
+```
+  tunnel:
+    sshConnection: bob@my.ssh.server.example.org
+    tunnelFor: my.sword.server.example.org my.db.server.example.org my.solr.server.example.org my.ui.server.example.org
+```
+
+*sshConnection* indicates the connection you will tunnel traffic through using ssh.  You'll need to set
+up the user so they are able to connect to the tunnel server by ssh.  You may add the public key for this user to the
+.ssh/authorized_keys on the tunnel server if you want to enable passwordless login.  Otherwise when you start the tunnel
+you will be prompted to enter the user's password.
+
+*tunnelFor* indicates the domain names for which tunneling is enabled.  Other traffic for different domains
+or IP addresses will not be tunneled through the external server.
+
+- To start the tunnel from the home directory of the vagrant server, type *.\/sshuttle.sh start*
+
+- To stop the tunnel type *.\/sshuttle.sh stop*
+
+- To check the status of the tunnel, type *.\/sshuttle.sh status*
+
+The script also saves and deletes a sshuttle.pid file for tracking the process ID of sshuttle.
+
 ## Customizing the Vagrant-built VM
 
 Beyond the above required changes, you can further customize the development environment. If you wish to customize further, it's a good idea to familiarize yourself with Vagrant's [command-line interface](http://docs.vagrantup.com/v2/cli/).

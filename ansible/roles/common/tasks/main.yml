@@ -4,6 +4,7 @@
   with_items:
     - python-pip
     - python3-pip
+    - sshuttle
     
 - name: Copy python requirements
   template: src=python_requirements.txt.j2 dest="{{ user_home }}/requirements.txt" mode="u+rwx" 
@@ -47,6 +48,10 @@
 
 - name: Finish ruby and rails install on first login
   template: src=rails_install.sh.j2 dest="{{ user_home }}/rails_install.sh" mode=0755
+  become: no
+
+- name: Install sshuttle.sh start/stop/status script for tunneling traffic through firewalls
+  template: src=sshuttle.sh.j2 dest="{{ user_home }}/sshuttle.sh" mode=0744
   become: no
 
 - name: Create hidden dir for AWS
