@@ -104,7 +104,7 @@ To tunnel traffic, add configuration lines like the following example to the ans
 ```
   tunnel:
     sshConnection: bob@my.ssh.server.example.org
-    tunnelFor: my.sword.server.example.org my.db.server.example.org my.solr.server.example.org
+    tunnelFor: my.sword.server.example.org my.db.server.example.org my.solr.server.example.org my.ui.server.example.org
 ```
 
 *sshConnection* indicates the connection you will tunnel traffic through using ssh.  You'll need to set
@@ -112,8 +112,8 @@ up the user so they are able to connect to the tunnel server by ssh.  You may ad
 .ssh/authorized_keys on the tunnel server if you want to enable passwordless login.  Otherwise when you start the tunnel
 you will be prompted to enter the user's password.
 
-*tunnelFor* indicates the domain names for which tunneling is enabled.  Other traffic will not be
-tunneled through the external server.
+*tunnelFor* indicates the domain names for which tunneling is enabled.  Other traffic for different domains
+or IP addresses will not be tunneled through the external server.
 
 - To start the tunnel from the home directory of the vagrant server, type *.\/sshuttle.sh start*
 
