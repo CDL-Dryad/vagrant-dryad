@@ -77,7 +77,9 @@ After the machine has been created/provisioned successfully, you can log in with
     
 Within the virtual machine, the __ubuntu__ user owns the code and installed directory.
 
-On first login, a script will finish installing and initializing Rails and the Dryad system. To use some Dryad features, you will need to update the passwords in `dryad-config/config/app_config.yml`. To run the rails server, use the script `rails_start.sh`.
+On first login, a script will finish installing and initializing Rails and the Dryad system. To use some Dryad features, you will need to update the passwords in `dryad-config/config/app_config.yml`. OR, if you have access to https://github.com/cdlib/dryad-config/, you can delete the existing `~/dryad-config` directory and `git clone` that repo instead.
+
+To run the rails server, use the script `rails_start.sh`.
 
 To shut down the virtual machine, use
 
