@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Quick script to launch the MySql Client
+# You will be prompted for a password. This password must be looked up
+# from the dryad-config repo (or its checked-out copy on this machine).
+
+mysql --user {{ dryad.db.user }} --password {{ dryad.db.name }}

@@ -46,6 +46,10 @@
   template: src=rails_start.sh.j2 dest="{{ user_home }}/bin/rails_start.sh" mode="u+rwx" 
   become: no
 
+- name: Copy mysql_client script into bin directory
+  template: src=mysql_client.sh.j2 dest="{{ user_home }}/bin/mysql_client.sh" mode="u+rwx" 
+  become: no
+
 - name: Finish ruby and rails install on first login
   template: src=rails_install.sh.j2 dest="{{ user_home }}/rails_install.sh" mode=0755
   become: no
