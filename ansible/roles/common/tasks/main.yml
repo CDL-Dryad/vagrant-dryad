@@ -5,6 +5,8 @@
     - python-pip
     - python3-pip
     - sshuttle
+    - emacs
+    - ack-grep
     
 - name: Copy python requirements
   template: src=python_requirements.txt.j2 dest="{{ user_home }}/requirements.txt" mode="u+rwx" 
