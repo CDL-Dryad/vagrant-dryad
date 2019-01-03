@@ -5,6 +5,8 @@
     - python-pip
     - python3-pip
     - sshuttle
+    - emacs
+    - ack-grep
     
 - name: Copy python requirements
   template: src=python_requirements.txt.j2 dest="{{ user_home }}/requirements.txt" mode="u+rwx" 
@@ -44,6 +46,10 @@
 
 - name: Copy rails_start script into bin directory
   template: src=rails_start.sh.j2 dest="{{ user_home }}/bin/rails_start.sh" mode="u+rwx" 
+  become: no
+
+- name: Copy mysql_client script into bin directory
+  template: src=mysql_client.sh.j2 dest="{{ user_home }}/bin/mysql_client.sh" mode="u+rwx" 
   become: no
 
 - name: Finish ruby and rails install on first login
