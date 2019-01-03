@@ -45,7 +45,7 @@
     - include_role:
         name: geerlingguy.solr
       vars: 
-            solr_version: "5.5.3"
+            solr_version: "7.4.0"
             solr_remove_cruft: true
             solr_user: "{{ user }}"
             solr_create_user: false
