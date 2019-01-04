@@ -9,6 +9,9 @@ export AWS_SECRET_ACCESS_KEY={{ dryad.aws.secretKey }}
 export DOI_USER={{ dryad.doi.username }}
 export DOI_PASS={{ dryad.doi.password }}
 
+# SOLR address for Rails to use
+export SOLR_URL=http://127.0.0.1:8983/solr/geoblacklight
+
 # Rails environment (change this if you don't want to use the local env)
 export RAILS_ENV=local
 
