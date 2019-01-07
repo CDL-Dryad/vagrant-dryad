@@ -45,7 +45,7 @@
     - include_role:
         name: geerlingguy.solr
       vars: 
-            solr_version: "5.5.3"
+            solr_version: "7.4.0"
             solr_remove_cruft: true
             solr_user: "{{ user }}"
             solr_create_user: false
@@ -55,19 +55,16 @@
 - name: Install geoblacklight
   hosts: all
   tasks:
-    - file:
-        path: "{{ user_home }}/tmp"
-        state: directory
-        mode: 0777
-    - get_url:
-        url: https://github.com/geoblacklight/geoblacklight-schema/archive/v0.3.2.tar.gz
-        dest: "{{ user_home }}/tmp/v0.3.2.tar.gz"
-    - shell: "cd {{ user_home }}/tmp; tar zxvf v0.3.2.tar.gz; cp geoblacklight-schema-0.3.2/conf/* /var/solr/data/geoblacklight/conf"
+    - git: 
+        repo: https://github.com/geoblacklight/geoblacklight
+        dest: "{{ user_home }}/geoblacklight"
+        accept_hostkey: yes
+    - shell: "cd {{ user_home }}; cp -r geoblacklight/solr/conf/* /var/solr/data/geoblacklight/conf"
     - service:
         name: solr
         state: restarted
     - file:
-        path: "{{ user_home }}/tmp"
+        path: "{{ user_home }}/geoblacklight"
         state: absent
       become: yes
 
