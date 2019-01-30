@@ -1,4 +1,5 @@
 ---
+
 - name: Install useful command-line tools
   apt: pkg={{ item }} state=installed update-cache=yes
   with_items:
