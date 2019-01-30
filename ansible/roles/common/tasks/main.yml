@@ -7,6 +7,11 @@
     - sshuttle
     - emacs
     - ack-grep
+
+- name: Add an apt repository to allow a more current version of git
+  apt-repository:
+    repo: 'ppa:git-core/ppa'
+    state: present
     
 - name: Copy python requirements
   template: src=python_requirements.txt.j2 dest="{{ user_home }}/requirements.txt" mode="u+rwx" 
