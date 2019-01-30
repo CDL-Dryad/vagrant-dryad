@@ -1,4 +1,5 @@
 ---
+
 - name: Install useful command-line tools
   apt: pkg={{ item }} state=installed update-cache=yes
   with_items:
@@ -7,11 +8,6 @@
     - sshuttle
     - emacs
     - ack-grep
-
-- name: Add an apt repository to allow a more current version of git
-  apt-repository:
-    repo: 'ppa:git-core/ppa'
-    state: present
     
 - name: Copy python requirements
   template: src=python_requirements.txt.j2 dest="{{ user_home }}/requirements.txt" mode="u+rwx" 

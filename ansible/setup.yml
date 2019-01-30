@@ -23,10 +23,25 @@
              - mysql-client
              - libmysqlclient-dev
 
-- hosts: all
+- name: installing repo for Java 8 in Ubuntu
+  hosts: all
   tasks:
-    - name: installing repo for Java 8 in Ubuntu
-      apt_repository: repo='ppa:openjdk-r/ppa'
+    - apt_repository: repo='ppa:openjdk-r/ppa'
+
+- name: Add an apt repository to allow a more current version of git
+  hosts: all
+  tasks: 
+    - apt_repository: repo='ppa:git-core/ppa' state=present
+
+- name: Update apt
+  hosts: all
+  tasks: 
+    - apt: upgrade=yes update_cache=yes 
+
+- name: Ensure updated Git
+  hosts: all
+  tasks: 
+    - apt: pkg=git state=latest
 
 - name: Install Java 8
   hosts: all
