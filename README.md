@@ -1,6 +1,8 @@
 vagrant-dryad
 =============
 
+This repository is archived, because it is no longer maintained. 
+
 Vagrant and Ansible config for building a Dryad VM
 
 Uses Ubuntu 16.04 64-bit, Ansible, MySQL, Java8, Ruby
